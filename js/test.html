@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;}
+        img{
+            width: 200px;
+            height: 200px;
+            display: block;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <img src="" data-url ="../images/banner1.jpg">
+    <img src="" data-url ="../images/banner1.jpg">
+    <img src="" data-url ="../images/banner3.jpg">
+    <img src="" data-url ="../images/banner4.jpg">
+    <img src="" data-url ="../images/banner5.jpg">
+    <img src="" data-url ="../images/banner6.jpg">
+    <img src="" data-url ="../images/banner7.jpg">
+    <img src="" data-url ="../images/banner8.jpg">
+    <img src="" data-url ="../images/banner9.jpg">
+    <img src="" data-url ="../images/banner10.jpg">
+    <img src="" data-url ="../images/banner1.jpg">
+    <img src="" data-url ="../images/banner2.jpg">
+    <img src="" data-url ="../images/banner3.jpg">
+    <img src="" data-url ="../images/banner4.jpg">
+    <img src="" data-url ="../images/banner5.jpg">
+    <img src="" data-url ="../images/banner6.jpg">
+    <img src="" data-url ="../images/banner7.jpg">
+    <img src="" data-url ="../images/banner8.jpg">
+    <img src="" data-url ="../images/banner9.jpg">
+    <img src="" data-url ="../images/banner10.jpg">
+    <img src="" data-url ="../images/banner1.jpg">
+    <img src="" data-url ="../images/banner2.jpg">
+    <img src="" data-url ="../images/banner3.jpg">
+    <img src="" data-url ="../images/banner4.jpg">
+    <img src="" data-url ="../images/banner5.jpg">
+    <img src="" data-url ="../images/banner6.jpg">
+    <img src="" data-url ="../images/banner7.jpg">
+    <img src="" data-url ="../images/banner8.jpg">
+    <img src="" data-url ="../images/banner9.jpg">
+    <img src="" data-url ="../images/banner10.jpg">
+    <img src="" data-url ="../images/banner1.jpg">
+    <img src="" data-url ="../images/banner2.jpg">
+    <img src="" data-url ="../images/banner3.jpg">
+    <img src="" data-url ="../images/banner4.jpg">
+    <img src="" data-url ="../images/banner5.jpg">
+    <img src="" data-url ="../images/banner6.jpg">
+    <img src="" data-url ="../images/banner7.jpg">
+    <img src="" data-url ="../images/banner8.jpg">
+    <img src="" data-url ="../images/banner9.jpg">
+    <img src="" data-url ="../images/banner10.jpg">
+    <script>
+        //页面加载时先调用一次loadImg函数
+        // loadImg()
+        //添加滚动事件
+        window.onscroll = function () {
+            loadImg()
+        }
+    
+        function loadImg() {
+            var iH = document.documentElement.clientHeight;
+            var t = document.documentElement.scrollTop || document.body.scrollTop;
+            var img = document.getElementsByTagName("img");
+            for (var i = 0; i < img.length; i++) {
+                if ((!img[i].bstop) && offsetTop1(img[i]) < (iH + t)) {
+                    //注意  真正在页面上使用一定要加开关,不加开关每次条件符合时都会重新请求服务器，还不如不用懒加载
+                    //理解不了啥意思的同学，可以把img[i].bstop删去试试
+                    //同时不要用offsetTop  
+                    //因为offsetTop是获取离已定位的父元素的top值  
+                    //所以自己封装一个计算offsetTop的函数
+                    var src = img[i].getAttribute("data-url");
+                    img[i].src = src;
+                    img[i].bstop = true;
+                    console.log(1)
+                }
+            }
+        }
+    
+        //封装获取元素离上方的高度的函数
+        function offsetTop1(obj) {
+            var t = obj.offsetTop;
+            while (obj.offsetparent) {
+                obj = obj.offsetparent;
+                t = t + obj.offsetTop;
+            }
+            return t;
+        }
+    </script>
